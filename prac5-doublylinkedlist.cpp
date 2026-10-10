@@ -1,27 +1,26 @@
-#include <iostream>
-#include <cstdlib>
-using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
 
 struct Node {
     int data;
-    Node *prev;
-    Node *next;
+    struct Node *prev;
+    struct Node *next;
 };
 
-Node *head = NULL;
+struct Node *head = NULL;
 
 // Function to insert a node
 void insert() {
-    Node *newNode, *temp;
+    struct Node *newNode, *temp;
     int value, position, i;
 
-    newNode = (Node *)malloc(sizeof(Node));
+    newNode = (struct Node *)malloc(sizeof(struct Node));
 
-    cout << "Enter value: ";
-    cin >> value;
+    printf("Enter value: ");
+    scanf("%d", &value);
 
-    cout << "Enter position: ";
-    cin >> position;
+    printf("Enter position: ");
+    scanf("%d", &position);
 
     newNode->data = value;
     newNode->prev = NULL;
@@ -36,8 +35,7 @@ void insert() {
         }
 
         head = newNode;
-
-        cout << "Node inserted successfully.\n";
+        printf("Node inserted successfully.\n");
         return;
     }
 
@@ -49,7 +47,7 @@ void insert() {
     }
 
     if (temp == NULL) {
-        cout << "Invalid position!\n";
+        printf("Invalid position!\n");
         free(newNode);
         return;
     }
@@ -63,21 +61,21 @@ void insert() {
 
     temp->next = newNode;
 
-    cout << "Node inserted successfully.\n";
+    printf("Node inserted successfully.\n");
 }
 
 // Function to delete a node
 void deleteNode() {
-    Node *temp;
+    struct Node *temp;
     int position, i;
 
     if (head == NULL) {
-        cout << "List is empty!\n";
+        printf("List is empty!\n");
         return;
     }
 
-    cout << "Enter position to delete: ";
-    cin >> position;
+    printf("Enter position to delete: ");
+    scanf("%d", &position);
 
     temp = head;
 
@@ -91,7 +89,7 @@ void deleteNode() {
 
         free(temp);
 
-        cout << "Node deleted successfully.\n";
+        printf("Node deleted successfully.\n");
         return;
     }
 
@@ -101,7 +99,7 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        cout << "Invalid position!\n";
+        printf("Invalid position!\n");
         return;
     }
 
@@ -115,36 +113,36 @@ void deleteNode() {
 
     free(temp);
 
-    cout << "Node deleted successfully.\n";
+    printf("Node deleted successfully.\n");
 }
 
 // Display in forward direction
 void displayForward() {
-    Node *temp;
+    struct Node *temp;
 
     if (head == NULL) {
-        cout << "List is empty!\n";
+        printf("List is empty!\n");
         return;
     }
 
     temp = head;
 
-    cout << "Forward: ";
+    printf("Forward: ");
 
     while (temp != NULL) {
-        cout << temp->data << " <-> ";
+        printf("%d <-> ", temp->data);
         temp = temp->next;
     }
 
-    cout << "NULL\n";
+    printf("NULL\n");
 }
 
 // Display in reverse direction
 void displayReverse() {
-    Node *temp;
+    struct Node *temp;
 
     if (head == NULL) {
-        cout << "List is empty!\n";
+        printf("List is empty!\n");
         return;
     }
 
@@ -155,31 +153,31 @@ void displayReverse() {
         temp = temp->next;
     }
 
-    cout << "Reverse: ";
+    printf("Reverse: ");
 
     while (temp != NULL) {
-        cout << temp->data << " <-> ";
+        printf("%d <-> ", temp->data);
         temp = temp->prev;
     }
 
-    cout << "NULL\n";
+    printf("NULL\n");
 }
 
 // Main function
 int main() {
     int choice, n, i, value;
 
-    cout << "Enter the number of elements initially: ";
-    cin >> n;
+    printf("Enter the number of elements initially: ");
+    scanf("%d", &n);
 
     // Create initial list
     for (i = 1; i <= n; i++) {
-        Node *newNode, *temp;
+        struct Node *newNode, *temp;
 
-        newNode = (Node *)malloc(sizeof(Node));
+        newNode = (struct Node *)malloc(sizeof(struct Node));
 
-        cout << "Enter element " << i << ": ";
-        cin >> value;
+        printf("Enter element %d: ", i);
+        scanf("%d", &value);
 
         newNode->data = value;
         newNode->prev = NULL;
@@ -202,15 +200,15 @@ int main() {
 
     // Menu
     do {
-        cout << "\n===== DOUBLY LINKED LIST =====\n";
-        cout << "1. Insertion\n";
-        cout << "2. Deletion\n";
-        cout << "3. Display Forward\n";
-        cout << "4. Display Reverse\n";
-        cout << "5. Exit\n";
+        printf("\n===== DOUBLY LINKED LIST =====\n");
+        printf("1. Insertion\n");
+        printf("2. Deletion\n");
+        printf("3. Display Forward\n");
+        printf("4. Display Reverse\n");
+        printf("5. Exit\n");
 
-        cout << "Enter your choice: ";
-        cin >> choice;
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
         switch (choice) {
             case 1:
@@ -230,11 +228,11 @@ int main() {
                 break;
 
             case 5:
-                cout << "Exiting program...\n";
+                printf("Exiting program...\n");
                 break;
 
             default:
-                cout << "Invalid choice!\n";
+                printf("Invalid choice!\n");
         }
 
     } while (choice != 5);
